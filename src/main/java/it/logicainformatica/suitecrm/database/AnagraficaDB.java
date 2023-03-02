@@ -113,23 +113,4 @@ public class AnagraficaDB {
 	        }
 	    }
 	
-	// METODO PER VISUALIZZARE DATI PRESENTI SU FILE TXT
-	public List<AnagraficaUtente> getAnagraficaAllTXT() {
-		
-		List<AnagraficaUtente> lista = new ArrayList<AnagraficaUtente>();
-			
-			try {
-		        BufferedReader reader = new BufferedReader(new FileReader("anagrafica.txt"));
-		        String line = reader.readLine();
-		        while(line!=null) {
-		             line = reader.readLine();
-		        }
-		        
-		    }catch(IOException e){
-		        e.printStackTrace();
-		    }
-			
-			return lista;
-	}
-	
 }

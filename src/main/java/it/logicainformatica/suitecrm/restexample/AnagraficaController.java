@@ -1,7 +1,15 @@
 package it.logicainformatica.suitecrm.restexample;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
+
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,8 +44,33 @@ public class AnagraficaController {
 	}
 
 	@GetMapping("/getListaAnagrafica-TXT")
-	public List<AnagraficaUtente> getListaAnagraficaTXT() {
-		List<AnagraficaUtente> lista = anagraficaDB.getAnagraficaAllTXT();
-		return lista; //ritorna oggetto response
+	public ResponseEntity<String> getListaAnagraficaTXT() {
+		
+		try {
+			
+			File file = new File("crm.txt");
+
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+
+			StringBuilder sb = new StringBuilder();
+			String line;
+			
+			while ((line = reader.readLine()) != null) {
+				sb.append(line);
+				sb.append("\n");
+			}
+
+			reader.close();
+
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.TEXT_PLAIN);
+			return new ResponseEntity<String>(sb.toString(), headers, HttpStatus.OK);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ResponseEntity<String>("Errore", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }
