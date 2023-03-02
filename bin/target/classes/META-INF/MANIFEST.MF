@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: leond
+Build-Jdk: 17.0.6
+Implementation-Title: SuiteRestCRM
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: es.macero.dev
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-URL: http://projects.spring.io/spring-boot/SuiteRestCRM/
+Created-By: Maven Integration for Eclipse
+
